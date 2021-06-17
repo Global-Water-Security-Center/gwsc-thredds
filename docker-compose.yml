@@ -1,0 +1,18 @@
+---
+version: '3.7'
+
+services:
+  thredds:
+    image: unidata/thredds-docker:4.6.16.1
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+      - "8444:8443"
+    container_name: thredds
+    volumes:
+      - /home/gwscdev/aquadev/gwsc-thredds/logs/tomcat/:/usr/local/tomcat/logs/
+      - /home/gwscdev/aquadev/gwsc-thredds/logs/thredds/:/usr/local/tomcat/content/thredds/logs/
+      - /home/gwscdev/aquadev/gwsc-thredds/tomcat-users.xml:/usr/local/tomcat/conf/tomcat-users.xml
+      - /home/gwscdev/aquadev/gwsc-thredds/data:/usr/local/tomcat/content/thredds
+    env_file:
+      - "compose${THREDDS_COMPOSE_ENV_LOCAL}.env"
