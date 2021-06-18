@@ -15,9 +15,9 @@ for more information.
         <defaults>
             <!-- The global defaults. All elements are mandatory -->
             <allowFeatureInfo>true</allowFeatureInfo>
-            <defaultColorScaleRange>-50 50</defaultColorScaleRange>
+            <defaultColorScaleRange>-100 100</defaultColorScaleRange>
             <defaultPaletteName>rainbow</defaultPaletteName>
-            <defaultNumColorBands>20</defaultNumColorBands>
+            <defaultNumColorBands>200</defaultNumColorBands>
             <logScaling>false</logScaling>
             <intervalTime>false</intervalTime>
         </defaults>
