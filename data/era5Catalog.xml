@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog xmlns="http://www.unidata.ucar.edu/namespaces/thredds/InvCatalog/v1.0" xmlns:xlink="http://www.w3.org/1999/xlink"
+   name="Unidata THREDDS-IDD NetCDF-OpenDAP Server" version="1.0.1">
+
+  <service name="latest" serviceType="Resolver" base="" />
+  <service name="all" serviceType="Compound" base="">
+    <service name="ncdods" serviceType="OPENDAP" base="/thredds/dodsC/" />
+    <service name="HTTPServer" serviceType="HTTPServer" base="/thredds/fileServer/" />
+    <service name="wms" serviceType="WMS" base="/thredds/wms/" />
+    <service name="ncss" serviceType="NetcdfSubset" base="/thredds/ncss/" />
+  </service>
+
+  <dataset name="ERA5 Daily Precipitation and Temperatures" collectionType="TimeSeries">
+    <metadata inherited="true">
+      <serviceName>all</serviceName>
+      <authority>int.ecmwf.era5</authority>
+      <dataType>Grid</dataType>
+      <dataFormat>NetCDF</dataFormat>
+      <documentation xlink:href="https://apps.ecmwf.int/datasets/licences/copernicus/" xlink:title="Copernicus License" type="rights">Copernicus License</documentation>
+      <documentation xlink:href="https://www.ecmwf.int/en/forecasts/dataset/ecmwf-reanalysis-v5" xlink:title="ECMWF Reanalysis v5 (ERA5)">ECMWF Reanalysis v5 (ERA5)</documentation>
+      <documentation type="attribution">Contains modified Copernicus Climate Change Service information 2021</documentation>
+      <creator>
+        <name vocabulary="DIF">GWSC - Global Water Security Center</name>
+        <contact url="http://ovpred.ua.edu/alabama-water-institute/" email="msgremillion@ua.edu" />
+      </creator>
+      <timeCoverage>
+        <start>2020-06-01T00:00:00</start>
+        <end>present</end>
+        <resolution>24 hours</resolution>
+      </timeCoverage>
+    </metadata>
+
+    <datasetScan name="ERA 5 Daily Summary" ID="era5_daily_summary" path="era5" location="content/era5/daily_summary/" harvest="true">
+      <metadata inherited="true">
+        <documentation type="summary">ERA 5 Daily Summary - Daily minimum, maximum and mean temperature (derived from t2m) and total precipitation (sum of tp).</documentation>
+        <geospatialCoverage>
+          <northsouth>
+           <start>-90</start>
+           <size>180</size>
+           <resolution>0.25</resolution>
+           <units>degrees_north</units>
+          </northsouth>
+          <eastwest>
+            <start>-180</start>
+            <size>360</size>
+            <resolution>0.25</resolution>
+            <units>degrees_east</units>
+          </eastwest>
+          <name vocabulary="Thredds">global</name>
+        </geospatialCoverage>
+      </metadata>
+      <sort>
+        <lexigraphicByName increasing="true"/>
+      </sort>
+      <filter>
+        <include wildcard="reanalysis-era5-sfc-daily-*.nc"/>
+      </filter>
+    </datasetScan>
+  </dataset>
+</catalog>
