@@ -10,12 +10,13 @@
     <service name="ncss" serviceType="NetcdfSubset" base="/thredds/ncss/" />
   </service>
 
-  <dataset name="ERA5 Daily Precipitation and Temperatures" collectionType="TimeSeries">
+  <featureCollection name="ERA5 Daily Precipitation and Temperature" harvest="true" featureType="NetCDF" path="era5/dailypt">
     <metadata inherited="true">
       <serviceName>all</serviceName>
-      <authority>int.ecmwf.era5</authority>
       <dataType>Grid</dataType>
       <dataFormat>NetCDF</dataFormat>
+      <authority>int.ecmwf.era5</authority>
+      <documentation type="summary">ERA 5 Daily Summary - Daily minimum, maximum and mean temperature (derived from t2m) and total precipitation (sum of tp).</documentation>
       <documentation xlink:href="https://apps.ecmwf.int/datasets/licences/copernicus/" xlink:title="Copernicus License" type="rights">Copernicus License</documentation>
       <documentation xlink:href="https://www.ecmwf.int/en/forecasts/dataset/ecmwf-reanalysis-v5" xlink:title="ECMWF Reanalysis v5 (ERA5)">ECMWF Reanalysis v5 (ERA5)</documentation>
       <documentation type="attribution">Contains modified Copernicus Climate Change Service information 2021</documentation>
@@ -28,39 +29,23 @@
         <end>present</end>
         <resolution>24 hours</resolution>
       </timeCoverage>
+      <geospatialCoverage>
+        <northsouth>
+         <start>-90</start>
+         <size>180</size>
+         <resolution>0.25</resolution>
+         <units>degrees_north</units>
+        </northsouth>
+        <eastwest>
+          <start>-180</start>
+          <size>360</size>
+          <resolution>0.25</resolution>
+          <units>degrees_east</units>
+        </eastwest>
+        <name vocabulary="Thredds">global</name>
+      </geospatialCoverage>
     </metadata>
-
-    <datasetScan name="ERA 5 Daily Summary" ID="era5_daily_summary" path="era5" location="content/era5/daily_summary/" harvest="true">
-      <metadata inherited="true">
-        <documentation type="summary">ERA 5 Daily Summary - Daily minimum, maximum and mean temperature (derived from t2m) and total precipitation (sum of tp).</documentation>
-        <geospatialCoverage>
-          <northsouth>
-           <start>-90</start>
-           <size>180</size>
-           <resolution>0.25</resolution>
-           <units>degrees_north</units>
-          </northsouth>
-          <eastwest>
-            <start>-180</start>
-            <size>360</size>
-            <resolution>0.25</resolution>
-            <units>degrees_east</units>
-          </eastwest>
-          <name vocabulary="Thredds">global</name>
-        </geospatialCoverage>
-      </metadata>
-      <datasetScan name="GRIB2 Data" path="grib2" location="c:/data/grib2/" serviceName="myserver">
-        <addTimeCoverage
-          datasetNameMatchPattern="reanalysis-era5-sfc-daily-([0-9]{4})-([0-9]{2})-([0-9]{2}).nc$"
-          startTimeSubstitutionPattern="$1-$2-$3T00:00:00"
-          duration="24 hours" />
-      </datasetScan>
-      <sort>
-        <lexigraphicByName increasing="true"/>
-      </sort>
-      <filter>
-        <include wildcard="reanalysis-era5-sfc-daily-*.nc"/>
-      </filter>
-    </datasetScan>
-  </dataset>
+    <collection name="reanalysis-era5-sfc-daily" spec="content/era5/daily_summary/reanalysis-era5-sfc-daily-#yyyy-MM-dd#.nc" />
+    <update startup="test" rescan="0 0/15 * * * ? *"/>
+  </featureCollection>
 </catalog>
