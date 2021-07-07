@@ -42,19 +42,30 @@ for more information.
 
     <overrides>
         
-        <datasetPath pathSpec="testAll/*eta_211.nc">
+        <datasetPath pathSpec="era5/daily-summary.nc">
             <!-- Will apply to all paths that match the path spec above -->
             <pathDefaults>
                 <!-- These will apply to all variables in this path unless overridden below -->
-                <allowFeatureInfo>false</allowFeatureInfo>
-                <defaultPaletteName>occam</defaultPaletteName>
+                <allowFeatureInfo>true</allowFeatureInfo>
+                <defaultPaletteName>rainbow</defaultPaletteName>
             </pathDefaults>
 
             <variables>
                 <!-- Configure variables individually according to their internal ID.
                      This is the most specific setting and will override any others -->
-                <variable id="Z_sfc">
-                    <defaultColorScaleRange>10 20</defaultColorScaleRange>
+                <variable id="mean_t2m_c">
+                    <defaultColorScaleRange>-30 50</defaultColorScaleRange>
+                </variable>
+                <variable id="min_t2m_c">
+                    <defaultColorScaleRange>-30 50</defaultColorScaleRange>
+                </variable>
+                <variable id="max_t2m_c">
+                    <defaultColorScaleRange>-30 50</defaultColorScaleRange>
+                </variable>
+                <variable id="sum_tp_mm">
+                    <defaultPalleteName>occam</defaultPalleteName>
+                    <defaultColorScaleRange>1 2000</defaultColorScaleRange>
+                    <logScaling>true</logScaling>
                 </variable>
             </variables>
         </datasetPath>
