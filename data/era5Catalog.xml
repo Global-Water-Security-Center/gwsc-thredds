@@ -11,8 +11,8 @@
   </service>
 
   <dataset name="ERA5 Daily Precipitation and Temperatures" ID="era5-daily-summary" urlPath="era5/daily-summary.nc">
-    <serviceName>all</serviceName>
     <metadata inherited="true">
+      <serviceName>all</serviceName>
       <authority>int.ecmwf.era5</authority>
       <dataType>Grid</dataType>
       <dataFormat>NetCDF</dataFormat>
