@@ -63,7 +63,7 @@ for more information.
                     <defaultColorScaleRange>-30 50</defaultColorScaleRange>
                 </variable>
                 <variable id="sum_tp_mm">
-                    <defaultPalleteName>occam</defaultPalleteName>
+                    <defaultPaletteName>occam</defaultPaletteName>
                     <defaultColorScaleRange>1 2000</defaultColorScaleRange>
                     <logScaling>true</logScaling>
                 </variable>
