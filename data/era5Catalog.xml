@@ -10,7 +10,10 @@
     <service name="ncss" serviceType="NetcdfSubset" base="/thredds/ncss/" />
   </service>
 
-  <dataset name="ERA5 Daily Precipitation and Temperatures" ID="era5-daily-summary" urlPath="era5/daily-summary.nc">
+  <!-- Daily Mean Precipitation and Temperature -->
+  <dataset name="ERA5 Daily Precipitation and Temperatures"
+           ID="era5-daily-summary"
+           urlPath="era5/daily-summary.nc">
     <metadata inherited="true">
       <serviceName>all</serviceName>
       <authority>int.ecmwf.era5</authority>
@@ -29,14 +32,46 @@
         <resolution>24 hours</resolution>
       </timeCoverage>
     </metadata>
-
     <netcdf xmlns="http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2">
       <aggregation dimName="time" type="joinNew" recheckEvery="15 min">
         <variableAgg name="max_t2m_c"/>
         <variableAgg name="mean_t2m_c"/>
         <variableAgg name="min_t2m_c"/>
         <variableAgg name="sum_tp_mm"/>
-        <scan location="/usr/local/tomcat/content/thredds/public/era5/daily_summary/" dateFormatMark="reanalysis-era5-sfc-daily-#yyyy-MM-dd" suffix=".nc" />
+        <scan location="/usr/local/tomcat/content/thredds/public/era5/daily_summary/"
+              dateFormatMark="reanalysis-era5-sfc-daily-#yyyy-MM-dd"
+              suffix=".nc" />
+      </aggregation>
+    </netcdf>
+  </dataset>
+  <!-- Normal Precipitation and Temperature (1950-2021) -->
+  <dataset name="ERA5 Normal Precipitation and Temperature (1950-2021)"
+           ID="era5-normal-prcp-temp"
+           urlPath="era5/normal-prcp-temp.nc">
+    <metadata inherited="true">
+      <serviceName>all</serviceName>
+      <authority>int.ecmwf.era5</authority>
+      <dataType>Grid</dataType>
+      <dataFormat>NetCDF</dataFormat>
+      <documentation type="license" xlink:href="https://apps.ecmwf.int/datasets/licences/copernicus/" xlink:title="Copernicus License" />
+      <documentation type="source" xlink:href="https://www.ecmwf.int/en/forecasts/dataset/ecmwf-reanalysis-v5" xlink:title="ECMWF Reanalysis v5 (ERA5)" />
+      <documentation type="attribution">Contains modified Copernicus Climate Change Service information 2021</documentation>
+      <creator>
+        <name vocabulary="DIF">GWSC - Global Water Security Center</name>
+        <contact url="http://ovpred.ua.edu/alabama-water-institute/" email="msgremillion@ua.edu" />
+      </creator>
+      <timeCoverage>
+        <start>1950-01-01T00:00:00</start>
+        <end>2021-06-30T00:00:00</end>
+      </timeCoverage>
+    </metadata>
+    <netcdf xmlns="http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2">
+      <aggregation dimName="time" type="joinExisting">
+        <variableAgg name="normal_sum_tp_mm"/>
+        <variableAgg name="normal_mean_t2m_c"/>
+        <scan location="/usr/local/tomcat/content/thredds/public/era5/normal_pnt/"
+              dateFormatMark="reanalysis-era5-normal-pnt-#yyyy-MM-dd"
+              suffix=".nc" />
       </aggregation>
     </netcdf>
   </dataset>
