@@ -43,7 +43,7 @@ To use:
 
 8. Place data in the `data\public` directory and change owner and group to be `thredds` user. Be sure both owner and group permissions have read and write access.
 
-   **Note:** Refer to the `README` in the [gwsc-ingest respository] (https://github.com/Global-Water-Security-Center/gwsc-ingest) for instructions on how to produce the datasets referred to in the `era5Catalog.xml`.
+   **Note:** Refer to the `README` in the [gwsc-ingest respository](https://github.com/Global-Water-Security-Center/gwsc-ingest) for instructions on how to produce the datasets referred to in the `era5Catalog.xml`.
 
 10. Modify the `*.xml` files in the data directory to add new datasets to the THREDDS server. The root THREDDS catalog file is `catalog.xml`
 
